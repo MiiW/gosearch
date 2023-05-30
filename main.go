@@ -17,13 +17,14 @@ const (
 	perPage = 10
 
 	spClass = "SearchSnippet"
-	hdClass = "SearchSnippet-header"
+	hdClass = "SearchSnippet-headerContainer"
 	snClass = "SearchSnippet-synopsis"
 	ilClass = "SearchSnippet-infoLabel"
 )
 
 type pkg struct {
 	repo      string
+	path      string
 	desc      string
 	version   string
 	pubDate   string
@@ -109,10 +110,18 @@ func search(query string, seq int, pc chan<- *page, wg *sync.WaitGroup) {
 	spNodes := find(doc, condHasClass(spClass))
 	for _, spNode := range spNodes {
 		hdNodes := find(spNode, condHasClass(hdClass))
-		pkgRepo := find(hdNodes[0], condValidTxt())[0]
+		pkgNamePath := find(hdNodes[0], condValidTxt())
+		if len(pkgNamePath) < 2 {
+			continue
+		}
+		pkgName := pkgNamePath[0].Data
+		pkgPath := pkgNamePath[1].Data
 
 		pkgDesc := ""
 		snNodes := find(spNode, condHasClass(snClass))
+		if len(snNodes) == 0 {
+			continue
+		}
 		txtNode := find(snNodes[0], condValidTxt())
 		if len(txtNode) > 0 {
 			pkgDesc = txtNode[0].Data
@@ -122,12 +131,13 @@ func search(query string, seq int, pc chan<- *page, wg *sync.WaitGroup) {
 		pkgMeta := find(ilNodes[0], condValidTxt())
 
 		pkgs = append(pkgs, &pkg{
-			repo:      strings.TrimSpace(pkgRepo.Data),
+			repo:      strings.TrimSpace(pkgName),
+			path:      strings.Trim(pkgPath, "() "),
 			desc:      strings.TrimSpace(pkgDesc),
-			version:   strings.TrimSpace(pkgMeta[1].Data),
-			pubDate:   strings.TrimSpace(pkgMeta[3].Data),
-			importCnt: strings.TrimSpace(pkgMeta[5].Data),
-			license:   strings.TrimSpace(pkgMeta[7].Data),
+			importCnt: strings.TrimSpace(pkgMeta[1].Data),
+			version:   strings.TrimSpace(pkgMeta[2].Data),
+			pubDate:   strings.TrimSpace(pkgMeta[4].Data),
+			license:   strings.TrimSpace(pkgMeta[5].Data),
 		})
 	}
 	pc <- &page{seq, pkgs}
@@ -165,6 +175,9 @@ func condValidTxt() cond {
 
 func prettyPrint(p *pkg) {
 	fmt.Printf("%s (%s)\n", cfmt.Ssuccess(p.repo), cfmt.Sinfo(p.version))
+	if p.path != "" {
+		fmt.Printf("├ %s\n", p.path)
+	}
 	if p.desc != "" {
 		fmt.Printf("├ %s\n", p.desc)
 	}

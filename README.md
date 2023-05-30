@@ -46,39 +46,53 @@ Search the mux packages with `gosearch mux`.
 
 ```shell
 $ gosearch mux
-github.com/gorilla/mux (v1.7.3)
+mux (v1.8.0)
+├ github.com/gorilla/mux
 ├ Package mux implements a request router and dispatcher.
-└ Published: Jun 30, 2019 | Imported by: 6513 | License: BSD-3-Clause
+└ Published: Jul 11, 2020 | Imported by: 37,568 | License: BSD-3-Clause
 
-k8s.io/apiserver/pkg/server/mux (v0.0.0 (6eed2f5))
+mux (v0.27.2)
+├ k8s.io/apiserver/pkg/server/mux
 ├ Package mux contains abstractions for http multiplexing of APIs.
-└ Published: 1 day ago | Imported by: 222 | License: Apache-2.0
+└ Published: May 18, 2023 | Imported by: 214 | License: Apache-2.0
 
-github.com/containous/mux (v0.0.0 (c33f32e))
+grace (v1.12.3)
+├ github.com/astaxie/beego/grace
+├ Package grace use to hot reload Description: http://grisha.org/blog/2014/06/03/graceful-restart-in-golang/ Usage: import( "log" "net/http" "os" "github.com/astaxie/beego/grace" ) func handler(w http.ResponseWriter, r *http.Request) { w.Write([]byte("WORLD!")) } func main() { mux := http.NewServeMux() mux.HandleFunc("/hello", handler) err := grace.ListenAndServe("localhost:8080", mux) if err != nil { log.Println(err) } log.Println("Server on 8080 stopped") os.Exit(0) }
+└ Published: Nov  3, 2020 | Imported by: 201 | License: Apache-2.0
+
+mux (v0.0.0-...-b2dd784)
+├ github.com/containous/mux
 ├ Package mux implements a request router and dispatcher.
-└ Published: Oct 24, 2018 | Imported by: 95 | License: BSD-3-Clause
+└ Published: Jun 27, 2022 | Imported by: 656 | License: BSD-3-Clause
 
-k8s.io/kubernetes/pkg/genericapiserver/mux (v1.5.8)
-├ Package mux contains abstractions for http multiplexing of APIs.
-└ Published: Sep 30, 2017 | Imported by: 61 | License: Apache-2.0
+web (v1.0.1)
+├ github.com/zenazn/goji/web
+├ Package web provides a fast and flexible middleware stack and mux.
+└ Published: Jun  2, 2019 | Imported by: 856 | License: MIT
 
-k8s.io/kubernetes/pkg/genericapiserver/server/mux (v1.6.0 (alpha.1))
-├ Package mux contains abstractions for http multiplexing of APIs.
-└ Published: Jan 30, 2017 | Imported by: 48 | License: Apache-2.0
+otelmux (v0.42.0)
+├ go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux
+├ Package otelmux instruments the github.com/gorilla/mux package.
+└ Published: May 23, 2023 | Imported by: 91 | License: Apache-2.0
 
-github.com/coreos/etcd/third_party/github.com/gorilla/mux (v0.4.9)
-├ Package gorilla/mux implements a request router and dispatcher.
-└ Published: Mar 31, 2015 | Imported by: 66 | License: BSD-3-Clause, Apache-2.0
+traffic (v0.5.3)
+├ github.com/pilu/traffic
+├ Package traffic - a Sinatra inspired regexp/pattern mux for Go.
+└ Published: Jul 11, 2014 | Imported by: 208 | License: MIT
 
-github.com/muxinc/mux-go/examples/common (v0.3.0)
-└ Published: Oct 25, 2019 | Imported by: 9 | License: MIT
+mux (v2.2.8)
+├ github.com/luraproject/lura/v2/router/mux
+├ Package mux provides some basic implementations for building routers based on net/http mux
+└ Published: today | Imported by: 22 | License: Apache-2.0
 
-github.com/muxinc/mux-go (v0.3.0)
-└ Published: Oct 25, 2019 | Imported by: 12 | License: MIT
+mux (v1.51.0)
+├ gopkg.in/DataDog/dd-trace-go.v1/contrib/gorilla/mux
+├ Package mux provides tracing functions for tracing the gorilla/mux package (https://github.com/gorilla/mux).
+└ Published: May 24, 2023 | Imported by: 24 | License: Apache-2.0, BSD-3-Clause
 
-github.com/yinqiwen/gsnova/common/mux (v0.30.0)
-└ Published: Oct 29, 2017 | Imported by: 26 | License: BSD-3-Clause
-
-v2ray.com/core/common/mux (v4.19.1+incompatible)
-└ Published: Jun  3, 2019 | Imported by: 24 | License: MIT
+mux (v2.9.1)
+├ github.com/micro/go-micro/v2/util/mux
+├ Package mux provides proxy muxing
+└ Published: Jul  3, 2020 | Imported by: 6 | License: Apache-2.0
 ```
